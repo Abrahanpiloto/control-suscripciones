@@ -1,7 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-const FormAddSubs = ({ setPriceSubs, setTypeSubs, typeSubs, priceSubs }) => {
+const FormAddSubs = ({
+	setPriceSubs,
+	setTypeSubs,
+	typeSubs,
+	priceSubs,
+	subs,
+	setSubs,
+}) => {
 	const [error, setError] = useState(false);
 
 	const handleSubscriptions = (e) => {
@@ -15,6 +22,15 @@ const FormAddSubs = ({ setPriceSubs, setTypeSubs, typeSubs, priceSubs }) => {
 			}, 3000);
 			return;
 		}
+		const data = {
+			id: Date.now(),
+			type: typeSubs,
+			price: Number(priceSubs),
+		};
+		setSubs([...subs, data]);
+		setPriceSubs("");
+		setTypeSubs("");
+		console.log(subs);
 	};
 
 	return (
@@ -22,21 +38,22 @@ const FormAddSubs = ({ setPriceSubs, setTypeSubs, typeSubs, priceSubs }) => {
 			<h3>Agregar Suscripciones</h3>
 			<form onSubmit={handleSubscriptions}>
 				<p>Servicio</p>
-				<select onChange={(e) => setTypeSubs(e.target.value)}>
+				<select onChange={(e) => setTypeSubs(e.target.value)} value={typeSubs}>
 					<option value="">--Elegir--</option>
-					<option value="Netflix">Netflix</option>
+					<option value="netflix">Netflix</option>
 					<option value="disneyplus">Disney Plus</option>
 					<option value="hbomax">HBO Max</option>
 					<option value="starplus">Star Plus</option>
-					<option value="primevideos">Prime Videos</option>
+					<option value="primevideo">Prime Videos</option>
 					<option value="spotify">Spotify</option>
-					<option value="apletv">Aple tv</option>
+					<option value="apletv">Apple Tv</option>
 				</select>
 				<p>Precio</p>
 				<input
 					type="number"
 					placeholder="Ingresa aqui el precio $"
 					onChange={(e) => setPriceSubs(e.target.value)}
+					value={priceSubs}
 				/>
 				<input type="submit" value="agregar" />
 			</form>

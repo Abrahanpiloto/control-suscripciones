@@ -160,10 +160,14 @@ p.error {
 .single-item a {
 	text-decoration: none;
 	font-weight: 600;
-	background-color: aquamarine;
+	background-color: yellow;
 	padding: 5px 11px 8px;
 	border-radius: 5px;
 	color: #000;
+}
+
+.single-item a.delete {
+	background-color: red;
 }
 .single-item a.delete:hover {
 	background-color: #ff020282;
