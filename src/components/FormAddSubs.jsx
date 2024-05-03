@@ -22,17 +22,18 @@ const FormAddSubs = ({
 			}, 3000);
 			return;
 		}
+
 		const data = {
 			id: Date.now(),
 			type: typeSubs,
 			price: Number(priceSubs),
 		};
 		setSubs([...subs, data]);
+
 		setPriceSubs("");
 		setTypeSubs("");
 		console.log(subs);
 	};
-
 	return (
 		<div className="add-subscription">
 			<h3>Agregar Suscripciones</h3>
@@ -55,6 +56,7 @@ const FormAddSubs = ({
 					onChange={(e) => setPriceSubs(e.target.value)}
 					value={priceSubs}
 				/>
+
 				<input type="submit" value="agregar" />
 			</form>
 			{error ? (
