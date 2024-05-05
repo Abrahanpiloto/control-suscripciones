@@ -8,6 +8,7 @@ const MainControl = ({ count }) => {
 	const [typeSubs, setTypeSubs] = useState("");
 	const [priceSubs, setPriceSubs] = useState("");
 	const [subs, setSubs] = useState([]);
+	const [editId, setEditId] = useState("")
 
 	const eliminarItem = (id) => {
 		const newList = subs.filter((item) => item.id != id);
@@ -15,6 +16,7 @@ const MainControl = ({ count }) => {
 	};
 
 	const editItem = (id) => {
+		setEditId(id)
 		subs.map((item) => {
 			if (item.id === id) {
 				setTypeSubs(item.type);
@@ -34,6 +36,8 @@ const MainControl = ({ count }) => {
 					priceSubs={priceSubs}
 					subs={subs}
 					setSubs={setSubs}
+					setEditId={setEditId}
+					editId={editId}
 				/>
 			</div>
 			<DisplayItems

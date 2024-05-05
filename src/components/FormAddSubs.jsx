@@ -8,6 +8,8 @@ const FormAddSubs = ({
 	priceSubs,
 	subs,
 	setSubs,
+	setEditId,
+	editId
 }) => {
 	const [error, setError] = useState(false);
 
@@ -23,12 +25,24 @@ const FormAddSubs = ({
 			return;
 		}
 
-		const data = {
-			id: Date.now(),
-			type: typeSubs,
-			price: Number(priceSubs),
-		};
-		setSubs([...subs, data]);
+		if(editId != "") {
+			setEditId("")
+			const newSubs = subs.map(item => {
+				if(item.id === editId) {
+					item.price = priceSubs
+					item.type = typeSubs
+				}
+				return item
+			})
+			setSubs(newSubs)
+		} else {
+			const data = {
+				id: Date.now(),
+				type: typeSubs,
+				price: Number(priceSubs),
+			};
+			setSubs([...subs, data]);
+		}
 
 		setPriceSubs("");
 		setTypeSubs("");
@@ -56,8 +70,8 @@ const FormAddSubs = ({
 					onChange={(e) => setPriceSubs(e.target.value)}
 					value={priceSubs}
 				/>
-
-				<input type="submit" value="agregar" />
+				{editId != "" ? <input type="submit" value="guardar" /> : <input type="submit" value="agregar" />}
+				
 			</form>
 			{error ? (
 				<p className="error">Por favor llene todos los campos </p>
