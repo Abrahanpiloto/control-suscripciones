@@ -28,7 +28,7 @@ const MainControl = ({ count }) => {
 	return (
 		<>
 			<div className="main-form">
-				<Balance count={count} />
+				<Balance count={count} subs={subs} />
 				<FormAddSubs
 					setTypeSubs={setTypeSubs}
 					setPriceSubs={setPriceSubs}
