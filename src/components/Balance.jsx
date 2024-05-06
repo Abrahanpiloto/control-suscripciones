@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { moneyFormat } from "../helpers";
 
-const Balance = ({ count, subs }) => {
+const Balance = ({ count, subs, spent, setSpent }) => {
 
-	const [spent, setSpent] = useState(0)
+	
 	const updateBalance = () => {
 		const spent = subs.reduce((total, item) => Number(item.price) + total, 0)
 		setSpent(spent)

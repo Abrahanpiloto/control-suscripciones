@@ -9,12 +9,20 @@ const FormAddSubs = ({
 	subs,
 	setSubs,
 	setEditId,
-	editId
+	editId,
+	spent,
+	count
 }) => {
 	const [error, setError] = useState(false);
+	const [errorMoney, setErrorMoney] = useState(false)
 
 	const handleSubscriptions = (e) => {
 		e.preventDefault();
+		if(count - spent < priceSubs) {
+			setErrorMoney(true)
+			return
+		}
+		setErrorMoney(false)
 
 		if (typeSubs === "" || Number(priceSubs) <= 0) {
 			setError(true);
@@ -75,6 +83,9 @@ const FormAddSubs = ({
 			</form>
 			{error ? (
 				<p className="error">Por favor llene todos los campos </p>
+			) : null}
+			{errorMoney ? (
+				<p className="error">Ya no tienes presupuesto</p>
 			) : null}
 		</div>
 	);
